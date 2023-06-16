@@ -16,7 +16,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import capstone.bangkit.heailyapp.data.model.IngredientsItem
 import capstone.bangkit.heailyapp.data.model.Meal
 import coil.compose.AsyncImage
 
@@ -47,7 +46,7 @@ fun MealCard(
                 AsyncImage(
                     model = meal.image ,
                     contentDescription = null,
-                    contentScale = ContentScale.Fit,
+                    contentScale = ContentScale.FillHeight,
                     modifier = Modifier
                         .width(80.dp)
                         .height(80.dp)
@@ -81,49 +80,5 @@ fun MealCard(
                 Icon(Icons.Rounded.KeyboardArrowRight, contentDescription = "Localized description", tint = Color(0XffC58BF2))
             }
         }
-    }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun MealCardPreview(){
-    MaterialTheme{
-        MealCard(    Meal(
-            id = 10,
-            generatedPlanId = null,
-            name = "Porridge",
-            description = "Pancakes are some people's favorite breakfast, who doesn't like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! ",
-            category = "Bayi",
-            image = "https://media.discordapp.net/attachments/1039937760649298001/1118499471295254588/blue_package.jpg?width=1168&height=1168",
-            cookTime = "30 menit",
-            calorie = 200,
-            ingredients = listOf(
-                IngredientsItem(
-                    name = "Rice",
-                    qty = "200g"
-                ),
-                IngredientsItem(
-                    name = "Salt",
-                    qty = "1 tsp"
-                ),
-                IngredientsItem(
-                    name = "Chicken Powder",
-                    qty = "1 tsp"
-                ),
-                IngredientsItem(
-                    name = "Butter",
-                    qty = "10 gr"
-                ),
-            ),
-            nutritions = listOf("180kCal", "50g Fat", "20g protein", "50g carbon"),
-            steps= listOf(
-                "Prepare all of the ingredients that needed",
-                "Mix flour, sugar, salt, and baking powder",
-                "In a seperate place, mix the eggs and liquid milk until blended",
-                "Put the egg and milk mixture into the dry ingredients, Stir untul smooth and smooth",
-                "Prepare all of the ingredients that needed"
-            )
-        )
-        )
     }
 }

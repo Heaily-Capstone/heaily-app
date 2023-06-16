@@ -12,5 +12,7 @@ sealed class Screen(val route: String) {
     }
     object Tumbuh : Screen("tumbuh")
     object Nochild : Screen("noChild")
-    object AddChild : Screen("addChild")
+    object AddGrowthData : Screen("addGrowthData/{childId}"){
+        fun createRoute(childId: Int) = "addGrowthData/$childId"
+    }
 }

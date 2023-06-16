@@ -34,7 +34,7 @@ fun MealColumn(
             .wrapContentHeight()
     ){
         for (meal in listMeal){
-            key(meal.id) {
+            key(meal.mealId) {
                 MealCard(meal)
             }
         }

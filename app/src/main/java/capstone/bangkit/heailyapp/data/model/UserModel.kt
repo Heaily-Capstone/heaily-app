@@ -2,72 +2,64 @@ package capstone.bangkit.heailyapp.data.model
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Relation
+import androidx.room.*
 
 @Parcelize
 @Entity
 data class UserModel(
-	@PrimaryKey val userid: Int,
+	@PrimaryKey(autoGenerate = true)
+	@ColumnInfo(index = true)
+	val userId: Int? = null,
 
+	@ColumnInfo(index = true)
+	val email: String,
+
+	@ColumnInfo(index = true)
 	val password: String,
-	val children: List<ChildrenItem?>? = null,
-	val email: String
 ) : Parcelable
 
 @Parcelize
 @Entity
 data class ChildrenItem(
-	@PrimaryKey val childrenId: Int,
+	@PrimaryKey(autoGenerate = true)
+	val childrenId: Int? = null,
 
 	val userParentId: Int,
 	val name: String,
 	val gender: String,
 	val dob: String,
-	val allergies: List<String?>? = null,
-	val generatedMealPlans: List<GeneratedMealPlan?>? = null,
-	val growthData: List<GrowthDataItem?>? = null,
 ) : Parcelable
 
 @Parcelize
 @Entity
 data class GrowthDataItem(
-	@PrimaryKey val growthId: Int,
+	@PrimaryKey(autoGenerate = true)
+	val growthId: Int? = null,
 
 	val childOwnerId: Int,
-	val headCircumference: Int? = null,
 	val measurementDate: String,
+	val age: Int,
 	val weight: Int,
 	val height: Int,
 	val status: String
 ) : Parcelable
 
-
 data class UserWithChildren(
-	@Embedded val meal: Meal,
+	@Embedded val user: UserModel,
+
 	@Relation(
 		parentColumn = "userId",
 		entityColumn = "userParentId"
 	)
-	val ingredients: List<ChildrenItem>
+	val childrens: List<ChildrenItem>
 )
 
 data class ChildrenWithGrowth(
 	@Embedded val children: ChildrenItem,
+
 	@Relation(
 		parentColumn = "childrenId",
 		entityColumn = "childOwnerId"
 	)
 	val growthData: List<GrowthDataItem>
-)
-
-data class ChildrenWithGeneratedMealPlan(
-	@Embedded val children : ChildrenItem,
-	@Relation(
-		parentColumn = "childrenId",
-		entityColumn = "childrenOwnerId"
-	)
-	val generatedMealData: List<GeneratedMealPlan>
 )

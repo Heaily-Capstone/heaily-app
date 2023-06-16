@@ -28,8 +28,8 @@ import capstone.bangkit.heailyapp.ui.theme.*
 @Composable
 fun SignUp(){
     val configuration = LocalConfiguration.current
-    val email = remember { mutableStateOf(TextFieldValue()) }
-    val password = remember { mutableStateOf(TextFieldValue()) }
+    val email = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
 
     Column(
         verticalArrangement = Arrangement.Center,

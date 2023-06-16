@@ -26,8 +26,8 @@ fun Input(
     icon: @Composable() (() -> Unit)?,
     placeholder: String,
     label:  String,
-    onValueChange: (TextFieldValue) -> Unit,
-    value: TextFieldValue,
+    onValueChange: (String) -> Unit,
+    value: String,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -76,8 +76,8 @@ fun Input(
 @Composable
 @Preview(showBackground = true)
 fun FormInputPreview(){
-    val email = remember { mutableStateOf(TextFieldValue()) }
-    val password = remember { mutableStateOf(TextFieldValue()) }
+    val email = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
 
     Input(
         icon = { Icon(

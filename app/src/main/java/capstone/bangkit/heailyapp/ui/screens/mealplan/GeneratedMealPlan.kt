@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import capstone.bangkit.heailyapp.model.dummyMeal
 import capstone.bangkit.heailyapp.data.model.mealPlansItemDummy
 import capstone.bangkit.heailyapp.ui.components.MealColumn
 import capstone.bangkit.heailyapp.ui.components.MealSection

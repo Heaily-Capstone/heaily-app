@@ -2,7 +2,6 @@ package capstone.bangkit.heailyapp.data.local
 
 import androidx.room.*
 import capstone.bangkit.heailyapp.data.model.*
-import java.util.*
 
 @Dao
 interface UserDao {
@@ -15,22 +14,22 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertGrowthData(growthData: GrowthDataItem)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend  fun insertUserWithChildren(userWithChildren: UserWithChildren)
-
     @Transaction
-    @Query("SELECT * FROM UserModel where userid = :userid")
+    @Query("SELECT * FROM UserModel where userId = :userid")
     suspend fun getUser(userid: Int): UserModel
 
     @Transaction
-    @Query("SELECT * FROM UserModel where userid = :userid")
-    suspend fun getUsersWithChildren(userid : Int): List<UserWithChildren>
-
-    @Transaction
-    @Query("SELECT * FROM ChildrenItem where childrenId = :childrenId  ")
-    suspend fun getChildrenWithGrowth(childrenId:Int): List<ChildrenWithGrowth>
+    @Query("SELECT * FROM UserModel where email = :email")
+    suspend fun getUserByEmail(email: String): UserModel
 
     @Transaction
     @Query("SELECT * FROM ChildrenItem where childrenId  = :childrenId")
     suspend fun getChildren(childrenId: Int) : ChildrenItem
+
+    @Transaction
+    @Query("SELECT * FROM GrowthDataItem where childOwnerId = :childrenId")
+    suspend fun getGrowthDataByChildren(childrenId: Int) : List<GrowthDataItem>
+
 }
+
+
