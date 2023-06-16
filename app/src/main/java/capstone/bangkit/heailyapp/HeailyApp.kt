@@ -168,7 +168,7 @@ private fun BottomBar(
 
 @Preview(showBackground = true)
 @Composable
-fun JetHeroesAppPreview() {
+fun HeailyAppPreview() {
     HeailyAppTheme {
         HeailyApp()
     }

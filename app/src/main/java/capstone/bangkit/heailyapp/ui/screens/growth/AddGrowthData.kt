@@ -2,9 +2,12 @@ package capstone.bangkit.heailyapp.ui.screens.growth
 
 import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,12 +16,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import capstone.bangkit.heailyapp.data.Result
 import capstone.bangkit.heailyapp.data.model.ChildrenItem
+import capstone.bangkit.heailyapp.ui.ViewModelFactory
 import capstone.bangkit.heailyapp.ui.components.Input
 import capstone.bangkit.heailyapp.ui.components.PrimaryButton
+import capstone.bangkit.heailyapp.ui.navigation.Screen
 import capstone.bangkit.heailyapp.ui.screens.home.UserViewModel
+import capstone.bangkit.heailyapp.ui.theme.HeailyAppTheme
 
 @Composable
 fun AddGrowthData(
@@ -56,7 +65,11 @@ fun AddGrowthDataContent(
     viewModel: UserViewModel,
     onBackClick: () -> Unit
 ){
-    Column(){
+    Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier
+            .padding(16.dp)
+    ){
         val weight = remember { mutableStateOf("") }
         val height = remember { mutableStateOf("") }
         val measurementDate = remember { mutableStateOf("") }
@@ -69,7 +82,11 @@ fun AddGrowthDataContent(
                 .clickable { onBackClick() }
         )
 
-        Text(text="Add Growth Data")
+        Text(
+            text="Tambah Data Pertumbuhan",
+            style=MaterialTheme.typography.h3
+        )
+        Spacer(Modifier.padding(8.dp))
         Input(
             icon = null,
             placeholder = "Masukkan Berat",
@@ -93,7 +110,7 @@ fun AddGrowthDataContent(
         )
 
         PrimaryButton(
-            text = "Add Growth Data",
+            text = "Tambah Data",
             onClick = {
 //                viewModel.insertGrowthData(
 //                    weight = weight.value,
@@ -103,5 +120,20 @@ fun AddGrowthDataContent(
 //                )
             }
         )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun AddGrowthDataPreview(){
+    HeailyAppTheme() {
+        AddGrowthData(
+            childId = 1,
+            modifier = Modifier,
+            viewModel = viewModel(
+                factory = ViewModelFactory.getInstance(LocalContext.current)
+            )
+        ) {
+        }
     }
 }

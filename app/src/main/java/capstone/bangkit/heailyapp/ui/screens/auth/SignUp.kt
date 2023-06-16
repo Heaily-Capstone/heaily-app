@@ -56,7 +56,7 @@ fun SignUp(){
                 )
             )
             Text(
-                text = "Selamat Datang Kembali",
+                text = "Buat Akun Baru",
                 style = TextStyle(
                     fontFamily = Poppins,
                     fontWeight = FontWeight.Bold,
@@ -106,7 +106,7 @@ fun SignUp(){
             horizontalArrangement = Arrangement.Center,
         ){
             Text(
-                text= "Belum memiliki akun?",
+                text= "Sudah memiliki Akun?",
                 style = TextStyle(
                     fontFamily = Poppins,
                     fontWeight = FontWeight.Normal,
@@ -116,7 +116,7 @@ fun SignUp(){
             )
             Spacer(modifier = Modifier.width(4.dp))
             ClickableText(
-                text = AnnotatedString("Daftar"),
+                text = AnnotatedString("Masuk"),
                 style = TextStyle(
                     fontFamily = Poppins,
                     fontWeight = FontWeight.SemiBold,
@@ -131,5 +131,7 @@ fun SignUp(){
 @Composable
 @Preview(showBackground = true)
 fun SignUpPreview(){
-    SignUp()
+    HeailyAppTheme() {
+        SignUp()
+    }
 }
